@@ -38,7 +38,7 @@ pipeline {
         stage('Deploy to UAT') {
             steps {
                 echo "--- UAT var Deploy ---"
-                sshagent(['uat-ssh-key']) {
+                sshagent(['uat-server-key']) {
                     sh """
                         ssh -o StrictHostKeyChecking=no ubuntu@${UAT_IP} '
                             cd ~/simple-java-docker || git clone https://github.com/udayyadav22-crypto/simple-java-docker.git ~/simple-java-docker &&
