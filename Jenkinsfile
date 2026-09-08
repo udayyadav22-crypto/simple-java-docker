@@ -4,7 +4,7 @@ pipeline {
     environment {
         IMAGE_NAME = "simple-java-docker"
         IMAGE_TAG  = "latest"
-        UAT_IP = "10.0.1.50" // <- Ithe tumcha UAT Private IP taka
+        UAT_IP = "13.219.105.97" // <- Ithe tumcha UAT Private IP taka
     }
 
     stages {
