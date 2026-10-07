@@ -19,3 +19,30 @@ steps:
     publishJUnitResults: true
     testResultsFiles: '**/TEST-*.xml'
     goals: 'clean package'
+
+# 2. Build and Push Docker Image to ACR
+- task: AzureCLI@2
+  displayName: 'Build and Push Docker Image to ACR'
+  inputs:
+    azureSubscription: 'sc-azure-poc'
+    scriptType: 'bash'
+    scriptLocation: 'inlineScript'
+    inlineScript: |
+      echo "Logging in to Azure Container Registry..."
+
+      az acr login --name simplejavapocacr
+
+      echo "Building Docker image..."
+
+      docker build \
+        -t simplejavapocacr.azurecr.io/simple-java-docker:$(Build.BuildId) \
+        -t simplejavapocacr.azurecr.io/simple-java-docker:latest \
+        .
+
+      echo "Pushing Docker image..."
+
+      docker push simplejavapocacr.azurecr.io/simple-java-docker:$(Build.BuildId)
+
+      docker push simplejavapocacr.azurecr.io/simple-java-docker:latest
+
+      echo "Docker image pushed successfully!"
