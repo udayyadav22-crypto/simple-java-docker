@@ -1,0 +1,21 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+
+- checkout: self
+
+- task: Maven@4
+  displayName: 'Maven Build and Test'
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.17'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/TEST-*.xml'
+    goals: 'clean package'
