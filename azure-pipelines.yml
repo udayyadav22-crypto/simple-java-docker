@@ -1,5 +1,10 @@
+resources:
+  webhooks:
+    - webhook: JiraTrigger
+      connection: jira-poc-trigger
+
 trigger:
-- main
+  - main
 
 pool:
   vmImage: 'ubuntu-latest'
