@@ -1,0 +1,9 @@
+cd ~/simple-java-docker
+
+cat > .gitignore <<'EOF'
+target/
+*.class
+.idea/
+.vscode/
+*.log
+EOF
